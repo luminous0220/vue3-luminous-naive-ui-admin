@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import { RouteRecordRaw } from 'vue-router';
 import { AuthApi, IMenu } from '@/apis';
 import { useAuthStore } from './auth';
+import { MENU_TYPE } from '@/constants';
 
 
 let viewsModules: Record<string, () => Promise<Recordable>> = import.meta.glob('@/views/**/*.{vue,tsx}');
