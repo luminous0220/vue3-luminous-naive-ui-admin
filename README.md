@@ -39,8 +39,3 @@ npm run lint
 ```
 
 # Priview
-
-<video width="1280"  controls>
-  <source src="github/Preview.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
