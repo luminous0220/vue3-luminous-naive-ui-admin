@@ -22,7 +22,6 @@ declare module 'vue' {
     EditForm: typeof import('./../components/FormPro/EditForm.vue')['default']
     FormPro: typeof import('./../components/FormPro/FormPro.vue')['default']
     FormProItem: typeof import('./../components/FormPro/FormProItem.vue')['default']
-    'FormProItem copy': typeof import('./../components/FormPro/FormProItem copy.vue')['default']
     HelloWorld: typeof import('./../components/HelloWorld.vue')['default']
     ICarbonAddAlt: typeof import('~icons/carbon/add-alt')['default']
     ICarbonAsleepFilled: typeof import('~icons/carbon/asleep-filled')['default']

@@ -377,7 +377,6 @@ const submit = async () => {
 
     } else if (title.value === '授权') {
       await SysApi.assignRole(id, roleIds)
-
     }
   } finally {
     tableEl.value?.reload()
@@ -441,11 +440,14 @@ const handleRemove = async (row: IUser.Item) => {
     title: '删除用户',
     content: `确定删除${username}?`,
     onPositiveClick: async () => {
-      fullLoading()
-      await SysApi.removeUser([id!])
-      fullLoading(false)
-      window.$message.success('删除成功')
-      tableEl.value?.reload()
+      try {
+        fullLoading()
+        await SysApi.removeUser([id!])
+        window.$message.success('删除成功')
+        tableEl.value?.reload()
+      } finally {
+        fullLoading(false)
+      }
     }
   })
 

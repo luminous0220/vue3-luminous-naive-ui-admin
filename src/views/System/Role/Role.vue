@@ -159,11 +159,15 @@ const currentId = ref(0)
 
 // 授权
 const authorize = async (keys: ITreeCheckedValue) => {
-  fullLoading()
-  await SysApi.assignRoleMenu(currentId.value, keys as number[])
-  await tableEl.value?.reload()
-  window.$message.success('授权成功')
-  fullLoading(false)
+  try {
+    fullLoading()
+    await SysApi.assignRoleMenu(currentId.value, keys as number[])
+    await tableEl.value?.reload()
+    window.$message.success('授权成功')
+  } finally {
+    fullLoading(false)
+  }
+
 }
 
 // 新增、编辑
@@ -216,11 +220,14 @@ const handleRemove = async (row: IRole.Item) => {
     title: '删除角色',
     content: `确定删除${name}?`,
     onPositiveClick: async () => {
-      fullLoading()
-      await SysApi.removeRole(id)
-      fullLoading(false)
-      window.$message.success('删除成功')
-      tableEl.value?.reload()
+      try {
+        fullLoading()
+        await SysApi.removeRole(id)
+        window.$message.success('删除成功')
+        tableEl.value?.reload()
+      } finally {
+        fullLoading(false)
+      }
     }
   })
 

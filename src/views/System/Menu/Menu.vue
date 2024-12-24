@@ -514,11 +514,15 @@ const handleRemove = async (row: IMenu.Item) => {
     title: '删除菜单',
     content: `确定删除${title}?`,
     onPositiveClick: async () => {
-      fullLoading()
-      await SysApi.removeMenu(id)
-      fullLoading(false)
-      window.$message.success('删除成功')
-      tableEl.value?.reload()
+      try {
+        fullLoading()
+        await SysApi.removeMenu(id)
+        window.$message.success('删除成功')
+        tableEl.value?.reload()
+      } finally {
+        fullLoading(false)
+      }
+
     }
   })
 

@@ -1,26 +1,9 @@
 <template>
-  <modal
-    title="搜索菜单"
-    ref="ModalRef"
-    :onAfterEnter="() => AutoComp?.focus()"
-    :onAfterLeave="() => (inputValue = '')"
-    :maskClosable="true"
-    class="top-[-200px]"
-    :trap-focus="false"
-  >
-    <n-auto-complete
-      ref="AutoComp"
-      class="w-580px"
-      :get-show="() => true"
-      v-model:value="inputValue"
-      :input-props="{
-        autocomplete: 'disabled'
-      }"
-      :options="options"
-      placeholder="搜索菜单（支持菜单名、路径）"
-      clearable
-      :on-select="onClick"
-    >
+  <modal ref="ModalRef" :onAfterEnter="() => AutoComp?.focus()" :onAfterLeave="() => (inputValue = '')"
+    :maskClosable="true" class="top-[-200px] search-menu" :trap-focus="false">
+    <n-auto-complete ref="AutoComp" class="w-580px" :get-show="() => true" v-model:value="inputValue" :input-props="{
+      autocomplete: 'disabled'
+    }" :options="options" placeholder="搜索菜单（支持菜单名、路径）" clearable :on-select="onClick">
     </n-auto-complete>
   </modal>
 </template>
@@ -61,4 +44,13 @@ const open = () => {
 defineExpose({ open })
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss">
+.search-menu {
+  background: transparent !important;
+  box-shadow: none !important;
+
+  .n-card__content {
+    border-top: none !important;
+  }
+}
+</style>

@@ -1,21 +1,12 @@
 <template>
-  <div class="basic-tabs flex items-center justify-between pr-20px select-none lt-sm:pr-5px!">
+  <div v-if="GlobalSto.isShowTab"
+    class="basic-tabs flex items-center justify-between pr-20px select-none lt-sm:pr-5px!">
     <div class="overflow-auto">
       <!-- tab栏 -->
-      <n-tabs
-        type="card"
-        v-model:value="activeName"
-        :on-update:value="(path) => navigate(path)"
-        :on-close="handleRemove"
-        @contextmenu.prevent.stop="preventRightClick"
-      >
-        <n-tab-pane
-          :tab="item.title"
-          :name="item.path"
-          v-for="item in tabsMenuList"
-          :key="item.path"
-          :closable="item.close"
-        >
+      <n-tabs type="card" v-model:value="activeName" :on-update:value="(path) => navigate(path)"
+        :on-close="handleRemove" @contextmenu.prevent.stop="preventRightClick">
+        <n-tab-pane :tab="item.title" :name="item.path" v-for="item in tabsMenuList" :key="item.path"
+          :closable="item.close">
           <template #tab>
             <div class="wrap" @contextmenu.prevent.stop="handleContextMenu($event, item)">
               <n-icon class="mr-10px">
@@ -31,17 +22,9 @@
     <tab-ctr class="ml-12" />
 
     <!-- 右键tab栏popover -->
-    <n-dropdown
-      placement="bottom-start"
-      trigger="manual"
-      :x="_left"
-      :show="showDropDown"
-      :y="_top"
-      :options="dropDownOptions"
-      :on-clickoutside="() => (showDropDown = false)"
-      :on-select="onSelect"
-      v-if="!GlobalSto.isMobile"
-    >
+    <n-dropdown placement="bottom-start" trigger="manual" :x="_left" :show="showDropDown" :y="_top"
+      :options="dropDownOptions" :on-clickoutside="() => (showDropDown = false)" :on-select="onSelect"
+      v-if="!GlobalSto.isMobile">
     </n-dropdown>
   </div>
 </template>
@@ -184,6 +167,7 @@ watch(
 
 .basic-tabs {
   width: 100%;
+
   .wrap {
     position: relative;
     display: flex;
@@ -191,13 +175,16 @@ watch(
     width: 100%;
     align-items: center;
   }
+
   .n-tabs-tab {
     border-radius: 8px !important;
     transition: all ease 0.5s;
   }
+
   .n-tabs-tab--active {
     background-color: var(--white-1) !important;
   }
+
   .n-tabs.n-tabs--top .n-tab-pane {
     padding: 0px !important;
   }
